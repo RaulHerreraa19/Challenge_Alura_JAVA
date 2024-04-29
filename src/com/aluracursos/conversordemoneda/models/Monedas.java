@@ -1,20 +1,22 @@
 package com.aluracursos.conversordemoneda.models;
 
-public class Monedas {
-    private String lugar;
+import com.aluracursos.conversordemoneda.metods.MonedaAPI;
 
-    public Monedas(String lugar) {
-        this.lugar = lugar;
+import java.util.Map;
+
+public class Monedas{
+    private String base;
+    private int amount;
+    private Map<Double, String> result;
+
+    public Monedas(MonedaAPI base) {
+        this.base = String.valueOf(base);
     }
 
 
 
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
+    public void setLugar(String base) {
+        this.base = base;
     }
 
-    @Override
-    public String toString() {
-        return lugar;
-    }
 }
