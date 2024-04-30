@@ -90,7 +90,7 @@ public class Principal {
             }
 
             try {
-                var direccion = "https://api.fastforex.io/convert?api_key=8a4c8cfa1f-6a2b6d9b2a-schi30&convert?from=" + monedaDeCambio + "&to=" + monedaACambiar + "&amount=" + cantidad;
+                var direccion = "https://v6.exchangerate-api.com/v6/289be365cc06167dc06274ad/pair/" + monedaDeCambio + "/" + monedaACambiar + "/" + cantidad;
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create(direccion))
@@ -103,10 +103,7 @@ public class Principal {
                 gson.toJson(json);
                 MonedaAPI monedaApi = gson.fromJson(json, MonedaAPI.class);
 
-                Monedas moneda = new Monedas(monedaApi);
-
-
-                System.out.println("el valor de " + cantidad + " [" + monedaDeCambio +  "] corresponde al valor final de =>>> " + monedaApi.result().get(monedaACambiar));
+                System.out.println("el valor de " + cantidad + " [" + monedaDeCambio +  "] corresponde al valor final de =>>> " + monedaApi.conversion_result() + " [" + monedaACambiar +  "]");
 
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
